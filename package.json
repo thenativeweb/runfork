@@ -1,0 +1,35 @@
+{
+  "name": "runfork",
+  "version": "0.0.0",
+  "description": "runfork runs a Node.js script isolated as a process.",
+  "contributors": [
+    {
+      "name": "Golo Roden",
+      "email": "golo.roden@thenativeweb.io"
+    },
+    {
+      "name": "Matthias Wagler",
+      "email": "matthias.wagler@thenativeweb.io"
+    }
+  ],
+  "main": "lib/runfork.js",
+  "dependencies": {},
+  "devDependencies": {
+    "assertthat": "0.8.0",
+    "flaschenpost": "0.13.0",
+    "measure-time": "3.0.0",
+    "processenv": "0.1.0",
+    "roboter": "0.11.12",
+    "superagent": "2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thenativeweb/runfork.git"
+  },
+  "keywords": [
+    "child_process",
+    "fork",
+    "process"
+  ],
+  "license": "MIT"
+}
