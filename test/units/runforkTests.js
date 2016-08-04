@@ -11,6 +11,12 @@ const runfork = require('../../lib/runfork');
 const sampleApp = path.join(__dirname, '..', 'sample', 'app.js');
 
 suite('runfork', () => {
+  teardown(done => {
+    // Delay each test so that the operating system has enough time to clear
+    // any ports being used.
+    setTimeout(done, 0.5 * 1000);
+  });
+
   test('is a function.', done => {
     assert.that(runfork).is.ofType('function');
     done();
@@ -41,6 +47,29 @@ suite('runfork', () => {
     runfork({ path: sampleApp }, err => {
       assert.that(err).is.null();
       done();
+    });
+  });
+
+  suite('onMessage', () => {
+    test('gets called when the script sends a message.', done => {
+      let wasOnMessageCalled = false;
+
+      runfork({
+        path: sampleApp,
+        env: {
+          TIMEOUT: 1.5 * 1000
+        },
+        onMessage (message) {
+          wasOnMessageCalled = true;
+          assert.that(message).is.equalTo({ ping: 'pong' });
+        },
+        onExit () {
+          assert.that(wasOnMessageCalled).is.true();
+          done();
+        }
+      }, err => {
+        assert.that(err).is.null();
+      });
     });
   });
 

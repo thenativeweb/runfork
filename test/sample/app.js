@@ -23,6 +23,10 @@ const exit = function () {
   /* eslint-enable no-process-exit */
 };
 
+setInterval(() => {
+  process.send({ ping: 'pong' });
+}, 1 * 1000);
+
 http.createServer((req, res) => {
   res.write('ok');
   res.end();

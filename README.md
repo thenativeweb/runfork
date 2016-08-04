@@ -39,6 +39,21 @@ runfork({
 });
 ```
 
+### Sending messages from the fork to the parent
+
+To send messages from the fork to the parent use the [`process.send`](https://nodejs.org/api/process.html#process_process_send_message_sendhandle_options_callback) function from within your fork. In the parent provide an `onMessage` function to receive the messages:
+
+```javascript
+runfork({
+  path: './app.js',
+  onMessage (message) {
+    // ...
+  }
+}, (err, stop) => {
+  // ...
+});
+```
+
 ### Stopping the fork
 
 If you start a long-running task and you want to stop this task, call the `stop` function that is being provided by the callback.
