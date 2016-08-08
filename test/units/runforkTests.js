@@ -114,6 +114,22 @@ suite('runfork', () => {
         assert.that(err).is.null();
       });
     });
+
+    test('is passed the stdout and stderr streams.', done => {
+      runfork({
+        path: sampleApp,
+        env: {
+          TIMEOUT: 1.5 * 1000
+        },
+        onExit (exitCode, stdout, stderr) {
+          assert.that(stdout).is.matching(/Sample application started/m);
+          assert.that(stderr).is.equalTo('');
+          done();
+        }
+      }, err => {
+        assert.that(err).is.null();
+      });
+    });
   });
 
   suite('environment variables', () => {

@@ -67,12 +67,12 @@ runfork({ path: './app.js' }, (err, stop) => {
 
 ### Detecting when the fork exits
 
-To get notified when the script exits, provide a `onExit` property in the `options` object. This function will get called with the exit code.
+To get notified when the script exits, provide a `onExit` property in the `options` object. This function will get called with the exit code as well as the stdout and the stderr streams.
 
 ```javascript
 runfork({
   path: './app.js',
-  onExit (exitCode) {
+  onExit (exitCode, stdout, stderr) {
     // ...
   }
 }, (err, stop) => {
