@@ -3,6 +3,7 @@
 const path = require('path');
 
 const assert = require('assertthat'),
+      knock = require('knockat'),
       measureTime = require('measure-time'),
       request = require('superagent');
 
@@ -153,7 +154,24 @@ suite('runfork', () => {
     });
   });
 
-  suite('stop', () => {
+  suite('arguments', () => {
+    test('passes arguments to the script.', done => {
+      runfork({
+        path: sampleApp,
+        args: [ '--type', 'test' ],
+        onExit (exitCode, stdout) {
+          assert.that(stdout).is.matching(/"Process arguments[^"]*,--type,test"/);
+          done();
+        }
+      }, err => {
+        assert.that(err).is.null();
+      });
+    });
+  });
+
+  suite('stop', function () {
+    this.timeout(4000);
+
     test('stops the script.', done => {
       runfork({
         path: sampleApp,
@@ -164,7 +182,9 @@ suite('runfork', () => {
         assert.that(errRunfork).is.null();
 
         // Wait until the http server is up and running.
-        setTimeout(() => {
+        knock.at('localhost', 3000, errKnock => {
+          assert.that(errKnock).is.null();
+
           request.
             get('http://localhost:3000/').
             end((errRequest, res) => {
@@ -180,7 +200,40 @@ suite('runfork', () => {
                   done();
                 });
             });
-        }, 0.5 * 1000);
+        });
+      });
+    });
+
+    test('stops the script, even if the shutdown takes longer.', done => {
+      runfork({
+        path: sampleApp,
+        env: {
+          TIMEOUT: 10 * 1000,
+          SHUTDOWN_TIMEOUT: 500
+        }
+      }, (errRunfork, stop) => {
+        assert.that(errRunfork).is.null();
+
+        // Wait until the http server is up and running.
+        knock.at('localhost', 3000, errKnock => {
+          assert.that(errKnock).is.null();
+
+          request.
+            get('http://localhost:3000/').
+            end(async (errRequest, res) => {
+              assert.that(errRequest).is.null();
+              assert.that(res.statusCode).is.equalTo(200);
+
+              await stop();
+
+              request.
+                get('http://localhost:3000/').
+                end(err => {
+                  assert.that(err).is.not.null();
+                  done();
+                });
+            });
+        });
       });
     });
   });

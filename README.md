@@ -24,6 +24,19 @@ runfork({ path: './app.js' }, (err, stop) => {
 });
 ```
 
+### Passing arguments to the fork
+
+You can pass arguments to the fork.
+
+```javascript
+runfork({
+  path: './app.js',
+  args: ['--type', 'test'],
+}, (err, stop) => {
+  // ...
+});
+```
+
 ### Passing environment variables to the fork
 
 From time to time you need to set environment variables for the script being called. To do so provide an `env` property in the `options` object that contains the environment variables as key-value pairs.
@@ -58,10 +71,14 @@ runfork({
 
 If you start a long-running task and you want to stop this task, call the `stop` function that is being provided by the callback.
 
+The `stop` function will send multiple SIGINT signals, and - if the process didn't stop - finally a SIGKILL signal.
+
+The `stop` function returns a promise and resolves after the process actually terminated. So you can wait for the process to terminate.
+
 ```javascript
-runfork({ path: './app.js' }, (err, stop) => {
+runfork({ path: './app.js' }, async (err, stop) => {
   // ...
-  stop();
+  await stop();
 });
 ```
 
