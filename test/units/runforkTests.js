@@ -3,6 +3,7 @@
 const path = require('path');
 
 const assert = require('assertthat'),
+      knock = require('knockat'),
       measureTime = require('measure-time'),
       request = require('superagent');
 
@@ -36,18 +37,10 @@ suite('runfork', () => {
     done();
   });
 
-  test('throws an error if callback is missing.', done => {
-    assert.that(() => {
-      runfork({ path: sampleApp });
-    }).is.throwing('Callback is missing.');
-    done();
-  });
-
   test('runs the given script.', done => {
-    runfork({ path: sampleApp }, err => {
-      assert.that(err).is.null();
-      done();
-    });
+    runfork({ path: sampleApp });
+
+    done();
   });
 
   suite('onMessage', () => {
@@ -67,8 +60,6 @@ suite('runfork', () => {
           assert.that(wasOnMessageCalled).is.true();
           done();
         }
-      }, err => {
-        assert.that(err).is.null();
       });
     });
   });
@@ -80,8 +71,6 @@ suite('runfork', () => {
         onExit () {
           done();
         }
-      }, err => {
-        assert.that(err).is.null();
       });
     });
 
@@ -95,8 +84,6 @@ suite('runfork', () => {
           assert.that(exitCode).is.equalTo(1);
           done();
         }
-      }, err => {
-        assert.that(err).is.null();
       });
     });
 
@@ -110,8 +97,6 @@ suite('runfork', () => {
           assert.that(exitCode).is.equalTo(1);
           done();
         }
-      }, err => {
-        assert.that(err).is.null();
       });
     });
 
@@ -126,8 +111,6 @@ suite('runfork', () => {
           assert.that(stderr).is.equalTo('');
           done();
         }
-      }, err => {
-        assert.that(err).is.null();
       });
     });
   });
@@ -147,40 +130,84 @@ suite('runfork', () => {
           assert.that(elapsed.seconds).is.equalTo(1);
           done();
         }
-      }, err => {
-        assert.that(err).is.null();
       });
     });
   });
 
-  suite('stop', () => {
-    test('stops the script.', done => {
+  suite('arguments', () => {
+    test('passes arguments to the script.', done => {
       runfork({
+        path: sampleApp,
+        args: [ '--type', 'test' ],
+        onExit (exitCode, stdout) {
+          assert.that(stdout).is.matching(/"Process arguments[^"]*,--type,test"/);
+          done();
+        }
+      });
+    });
+  });
+
+  suite('stop', function () {
+    this.timeout(4000);
+
+    test('stops the script.', async () => {
+      const stop = runfork({
         path: sampleApp,
         env: {
           TIMEOUT: 10 * 1000
         }
-      }, (errRunfork, stop) => {
-        assert.that(errRunfork).is.null();
+      });
 
-        // Wait until the http server is up and running.
-        setTimeout(() => {
-          request.
-            get('http://localhost:3000/').
-            end((errRequest, res) => {
-              assert.that(errRequest).is.null();
-              assert.that(res.statusCode).is.equalTo(200);
+      // Wait until the http server is up and running.
+      await knock.at('localhost', 3000);
 
-              stop();
+      await new Promise(resolve => {
+        request.
+          get('http://localhost:3000/').
+          end((errRequest, res) => {
+            assert.that(errRequest).is.null();
+            assert.that(res.statusCode).is.equalTo(200);
 
-              request.
-                get('http://localhost:3000/').
-                end(err => {
-                  assert.that(err).is.not.null();
-                  done();
-                });
-            });
-        }, 0.5 * 1000);
+            stop();
+
+            request.
+              get('http://localhost:3000/').
+              end(err => {
+                assert.that(err).is.not.null();
+                resolve();
+              });
+          });
+      });
+    });
+
+    test('stops the script, even if the shutdown takes longer.', async () => {
+      const stop = runfork({
+        path: sampleApp,
+        env: {
+          TIMEOUT: 10 * 1000,
+          SHUTDOWN_TIMEOUT: 500
+        }
+      });
+
+      // Wait until the http server is up and running.
+      await knock.at('localhost', 3000);
+
+      await new Promise(resolve => {
+        request.
+          get('http://localhost:3000/').
+          end(async (errRequest, res) => {
+            assert.that(errRequest).is.null();
+            assert.that(res.statusCode).is.equalTo(200);
+
+            await stop();
+
+            request.
+              get('http://localhost:3000/').
+              end(err => {
+                assert.that(err).is.not.null();
+                resolve();
+              });
+          });
       });
     });
   });

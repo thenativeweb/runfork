@@ -16,11 +16,20 @@ To use runfork first you need to add a reference to your application.
 const runfork = require('runfork');
 ```
 
-Then to run a Node.js script, run `runfork` and provide the path to the script using an `options` object. Additionally, you have to provide a callback. In case the script can not be started, you are being handed over the appropriate error.
+Then to run a Node.js script, run `runfork` and provide the path to the script using an `options` object. In case the script can not be started, an exception is thrown.
 
 ```javascript
-runfork({ path: './app.js' }, (err, stop) => {
-  // ...
+const stop = runfork({ path: './app.js' });
+```
+
+### Passing arguments to the fork
+
+You can pass arguments to the fork.
+
+```javascript
+const stop = runfork({
+  path: './app.js',
+  args: ['--type', 'test'],
 });
 ```
 
@@ -29,13 +38,11 @@ runfork({ path: './app.js' }, (err, stop) => {
 From time to time you need to set environment variables for the script being called. To do so provide an `env` property in the `options` object that contains the environment variables as key-value pairs.
 
 ```javascript
-runfork({
+const stop = runfork({
   path: './app.js',
   env: {
     PORT: 3000
   }
-}, (err, stop) => {
-  // ...
 });
 ```
 
@@ -44,39 +51,40 @@ runfork({
 To send messages from the fork to the parent use the [`process.send`](https://nodejs.org/api/process.html#process_process_send_message_sendhandle_options_callback) function from within your fork. In the parent provide an `onMessage` function to receive the messages:
 
 ```javascript
-runfork({
+const stop = runfork({
   path: './app.js',
   onMessage (message) {
     // ...
   }
-}, (err, stop) => {
-  // ...
 });
 ```
 
 ### Stopping the fork
 
-If you start a long-running task and you want to stop this task, call the `stop` function that is being provided by the callback.
+If you start a long-running task and you want to stop this task, call the `stop` function that is returned.
+
+The `stop` function will send up to 10 `SIGINT` signals with 10ms timeout, and - if the process didn't stop - finally a `SIGKILL` signal.
+
+The `stop` function returns a promise and resolves after the process actually terminated. So you can wait for the process to terminate.
 
 ```javascript
-runfork({ path: './app.js' }, (err, stop) => {
-  // ...
-  stop();
-});
+const stop = runfork({ path: './app.js' });
+
+// ...
+
+await stop();
 ```
 
 ### Detecting when the fork exits
 
-To get notified when the script exits, provide a `onExit` property in the `options` object. This function will get called with the exit code as well as the stdout and the stderr streams.
+To get notified when the script exits, provide the `onExit` property in the `options` object. This function will get called with the exit code as well as the stdout and the stderr streams.
 
 ```javascript
-runfork({
+const stop = runfork({
   path: './app.js',
   onExit (exitCode, stdout, stderr) {
     // ...
   }
-}, (err, stop) => {
-  // ...
 });
 ```
 
@@ -87,6 +95,13 @@ To build this module use [roboter](https://www.npmjs.com/package/roboter).
 ```bash
 $ bot
 ```
+
+## Breaking change
+
+### 0.4.0
+
+- The interface has changed, so that the `stop()` function is returned and not given in a callback.
+- The `stop()` function returns a promise and resolves only after the child process has actually terminated.
 
 ## License
 

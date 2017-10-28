@@ -9,6 +9,7 @@ const logger = flaschenpost.getLogger();
 
 const exitCode = processenv('EXIT_CODE') || 0,
       port = processenv('PORT') || 3000,
+      sigintTimeout = processenv('SIGINT_TIMEOUT') || 0,
       timeout = processenv('TIMEOUT') || 0;
 
 const exit = function () {
@@ -23,6 +24,10 @@ const exit = function () {
   /* eslint-enable no-process-exit */
 };
 
+process.on('SIGINT', () => {
+  setTimeout(exit, sigintTimeout);
+});
+
 setInterval(() => {
   process.send({ ping: 'pong' });
 }, 1 * 1000);
@@ -35,6 +40,10 @@ http.createServer((req, res) => {
 });
 
 logger.info('Sample application started.');
+
+if (process.argv.length > 1) {
+  logger.info(`Process arguments: ${process.argv.join(',')}`);
+}
 
 if (timeout) {
   setTimeout(exit, timeout);
