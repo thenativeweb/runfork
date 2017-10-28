@@ -4,7 +4,7 @@ runfork runs a Node.js script isolated as a process.
 
 ## Installation
 
-```bash
+```shell
 $ npm install runfork
 ```
 
@@ -24,7 +24,7 @@ const stop = runfork({ path: './app.js' });
 
 ### Passing arguments to the fork
 
-You can pass arguments to the fork.
+You can also pass arguments to the fork.
 
 ```javascript
 const stop = runfork({
@@ -61,11 +61,11 @@ const stop = runfork({
 
 ### Stopping the fork
 
-If you start a long-running task and you want to stop this task, call the `stop` function that is returned.
+Sometimes, e.g. when executing a long-running task, it may be necessary to stop the fork. For this, call the `stop` function that is returned.
 
-The `stop` function will send up to 10 `SIGINT` signals with 10ms timeout, and - if the process didn't stop - finally a `SIGKILL` signal.
+This function will send 10 `SIGINT` signals with 10ms breaks in between. If the process does not respond to this, it finally sends a `SIGKILL` signal to kill the process.
 
-The `stop` function returns a promise and resolves after the process actually terminated. So you can wait for the process to terminate.
+As the `stop` function returns a promise, you can wait for the process to terminate.
 
 ```javascript
 const stop = runfork({ path: './app.js' });
@@ -92,21 +92,14 @@ const stop = runfork({
 
 To build this module use [roboter](https://www.npmjs.com/package/roboter).
 
-```bash
+```shell
 $ bot
 ```
-
-## Breaking change
-
-### 0.4.0
-
-- The interface has changed, so that the `stop()` function is returned and not given in a callback.
-- The `stop()` function returns a promise and resolves only after the child process has actually terminated.
 
 ## License
 
 The MIT License (MIT)
-Copyright (c) 2016 the native web.
+Copyright (c) 2016-2017 the native web.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
