@@ -16,7 +16,7 @@
       "email": "stefan.heine@microfocus.com"
     }
   ],
-  "main": "lib/runfork.js",
+  "main": "dist/runfork.js",
   "dependencies": {
     "async": "2.5.0",
     "stream-to-string": "1.1.0"
