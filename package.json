@@ -19,6 +19,7 @@
   "main": "dist/runfork.js",
   "dependencies": {
     "async": "2.5.0",
+    "babel-polyfill": "6.26.0",
     "stream-to-string": "1.1.0"
   },
   "devDependencies": {
