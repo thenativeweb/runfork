@@ -6,27 +6,32 @@ require('babel-polyfill');
 
 var process = require('process');
 
-var fork = require('child_process').fork;
+var _require = require('child_process'),
+    fork = _require.fork;
 
-var async = require('async'),
+var retry = require('async-retry'),
     toString = require('stream-to-string');
 
-var runfork = function runfork(options) {
-  if (!options) {
-    throw new Error('Options are missing.');
-  }
-  if (!options.path) {
+var runfork = function runfork(_ref) {
+  var _this = this;
+
+  var path = _ref.path,
+      _ref$args = _ref.args,
+      args = _ref$args === undefined ? [] : _ref$args,
+      _ref$env = _ref.env,
+      env = _ref$env === undefined ? {} : _ref$env,
+      _ref$onMessage = _ref.onMessage,
+      onMessage = _ref$onMessage === undefined ? function () {
+    // Intentionally left blank.
+  } : _ref$onMessage,
+      _ref$onExit = _ref.onExit,
+      onExit = _ref$onExit === undefined ? function () {
+    // Intentionally left blank.
+  } : _ref$onExit;
+
+  if (!path) {
     throw new Error('Path is missing.');
   }
-
-  options.args = options.args || [];
-  options.env = options.env || {};
-  options.onMessage = options.onMessage || function () {
-    // Intentionally left blank.
-  };
-  options.onExit = options.onExit || function () {
-    // Intentionally left blank.
-  };
 
   var subProcess = void 0;
 
@@ -34,99 +39,129 @@ var runfork = function runfork(options) {
     subProcess.kill('SIGINT');
   };
 
+  process.on('SIGINT', cleanUpAndExit);
+  process.on('SIGTERM', cleanUpAndExit);
+  process.on('exit', cleanUpAndExit);
+
+  subProcess = fork(path, args, { env: env, silent: true });
+
+  subProcess.on('message', function (message) {
+    onMessage(message);
+  });
+
+  subProcess.once('exit', _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var stderr, stdout;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            stderr = '', stdout = '';
+
+            if (!subProcess.stdout.readable) {
+              _context.next = 5;
+              break;
+            }
+
+            _context.next = 4;
+            return toString(subProcess.stdout);
+
+          case 4:
+            stdout = _context.sent;
+
+          case 5:
+            if (!subProcess.stderr.readable) {
+              _context.next = 9;
+              break;
+            }
+
+            _context.next = 8;
+            return toString(subProcess.stderr);
+
+          case 8:
+            stderr = _context.sent;
+
+          case 9:
+
+            onExit(subProcess.exitCode, stdout, stderr);
+
+          case 10:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, _this);
+  })));
+
   var stop = function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var retries, killed;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+      var _this2 = this;
+
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
               process.removeListener('SIGINT', cleanUpAndExit);
               process.removeListener('SIGTERM', cleanUpAndExit);
               process.removeListener('exit', cleanUpAndExit);
 
-              retries = 10;
-              killed = false;
-              _context.next = 7;
-              return new Promise(function (resolve) {
-                async.doUntil(function (done) {
-                  try {
-                    process.kill(subProcess.pid, 'SIGINT');
-                  } catch (err) {
-                    killed = true;
-                  }
-                  setTimeout(function () {
-                    done();
-                  }, 10);
-                }, function () {
-                  if (killed) {
-                    return true;
-                  }
+              _context3.prev = 3;
+              _context3.next = 6;
+              return retry(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        _context2.prev = 0;
 
-                  retries -= 1;
+                        process.kill(subProcess.pid, 'SIGINT');
+                        _context2.next = 7;
+                        break;
 
-                  return retries === 0;
-                }, function (err) {
-                  if (err) {
-                    throw err;
+                      case 4:
+                        _context2.prev = 4;
+                        _context2.t0 = _context2['catch'](0);
+                        return _context2.abrupt('return');
+
+                      case 7:
+                        throw new Error('Process maybe is still running...');
+
+                      case 8:
+                      case 'end':
+                        return _context2.stop();
+                    }
                   }
-
-                  if (!subProcess.killed) {
-                    subProcess.kill('SIGKILL');
-                  }
-
-                  resolve();
-                });
+                }, _callee2, _this2, [[0, 4]]);
+              })), {
+                retries: 10,
+                minTimeout: 10,
+                maxTimeout: 10,
+                factor: 1
               });
 
-            case 7:
+            case 6:
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3['catch'](3);
+
+              // If the process could not be stopped gracefully, force it to shut down
+              // immediately.
+              subProcess.kill('SIGKILL');
+
+            case 11:
             case 'end':
-              return _context.stop();
+              return _context3.stop();
           }
         }
-      }, _callee, this);
+      }, _callee3, this, [[3, 8]]);
     }));
 
     return function stop() {
-      return _ref.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
-
-  process.on('SIGINT', cleanUpAndExit);
-  process.on('SIGTERM', cleanUpAndExit);
-  process.on('exit', cleanUpAndExit);
-
-  subProcess = fork(options.path, options.args, {
-    env: options.env,
-    silent: true
-  });
-
-  subProcess.on('message', function (message) {
-    options.onMessage(message);
-  });
-
-  subProcess.once('exit', function () {
-    async.parallel({
-      stdout: function stdout(done) {
-        if (!subProcess.stdout.readable) {
-          return done(null, '');
-        }
-        toString(subProcess.stdout, done);
-      },
-      stderr: function stderr(done) {
-        if (!subProcess.stderr.readable) {
-          return done(null, '');
-        }
-        toString(subProcess.stderr, done);
-      }
-    }, function (err, results) {
-      if (err) {
-        throw err;
-      }
-
-      options.onExit(subProcess.exitCode, results.stdout, results.stderr);
-    });
-  });
 
   return stop;
 };
