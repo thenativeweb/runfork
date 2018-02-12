@@ -23,13 +23,6 @@ suite('runfork', () => {
     done();
   });
 
-  test('throws an error if options are missing.', done => {
-    assert.that(() => {
-      runfork();
-    }).is.throwing('Options are missing.');
-    done();
-  });
-
   test('throws an error if path is missing.', done => {
     assert.that(() => {
       runfork({});
@@ -87,7 +80,7 @@ suite('runfork', () => {
       });
     });
 
-    test('is passed the exit code to onExit.', done => {
+    test('passes the exit code to onExit.', done => {
       runfork({
         path: sampleApp,
         env: {
@@ -100,7 +93,7 @@ suite('runfork', () => {
       });
     });
 
-    test('is passed the stdout and stderr streams.', done => {
+    test('passes the stdout and stderr streams.', done => {
       runfork({
         path: sampleApp,
         env: {
