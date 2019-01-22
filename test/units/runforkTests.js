@@ -7,9 +7,9 @@ const assert = require('assertthat'),
       measureTime = require('measure-time'),
       request = require('superagent');
 
-const runfork = require('../../lib/runfork');
+const runfork = require('../../src/runfork');
 
-const sampleApp = path.join(__dirname, '..', 'sample', 'app.js');
+const sampleApp = path.join(__dirname, '..', 'shared', 'sample', 'app.js');
 
 suite('runfork', () => {
   teardown(done => {
