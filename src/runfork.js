@@ -16,7 +16,8 @@ const runfork = function ({
   },
   onExit = () => {
     // Intentionally left blank.
-  }
+  },
+  silent = true
 }) {
   if (!path) {
     throw new Error('Path is missing.');
@@ -32,7 +33,7 @@ const runfork = function ({
   process.on('SIGTERM', cleanUpAndExit);
   process.on('exit', cleanUpAndExit);
 
-  subProcess = fork(path, args, { env, silent: true });
+  subProcess = fork(path, args, { env, silent });
 
   subProcess.on('message', message => {
     onMessage(message);
@@ -42,10 +43,10 @@ const runfork = function ({
     let stderr = '',
         stdout = '';
 
-    if (subProcess.stdout.readable) {
+    if (subProcess.stdout && subProcess.stdout.readable) {
       stdout = await toString(subProcess.stdout);
     }
-    if (subProcess.stderr.readable) {
+    if (subProcess.stderr && subProcess.stderr.readable) {
       stderr = await toString(subProcess.stderr);
     }
 
