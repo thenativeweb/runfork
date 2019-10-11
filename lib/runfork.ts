@@ -1,31 +1,30 @@
-'use strict';
-
-const process = require('process');
-
-const { fork } = require('child_process');
-
-const retry = require('async-retry'),
-      toString = require('stream-to-string');
+import process from 'process';
+import retry from 'async-retry';
+import toString from 'stream-to-string';
+import { ChildProcess, fork } from 'child_process';
 
 const runfork = function ({
   path,
   args = [],
   env = {},
-  onMessage = () => {
+  onMessage = (): void => {
     // Intentionally left blank.
   },
-  onExit = () => {
+  onExit = (): void => {
     // Intentionally left blank.
   },
   silent = true
-}) {
-  if (!path) {
-    throw new Error('Path is missing.');
-  }
+}: {
+  path: string;
+  args?: string[];
+  env?: NodeJS.ProcessEnv;
+  onMessage? (message: string): void;
+  onExit? (exitCode: number, stdoud: string, stderr: string): void;
+  silent?: boolean;
+}): () => Promise<void> {
+  let subProcess: ChildProcess;
 
-  let subProcess;
-
-  const cleanUpAndExit = function () {
+  const cleanUpAndExit = function (): void {
     subProcess.kill('SIGINT');
   };
 
@@ -35,11 +34,11 @@ const runfork = function ({
 
   subProcess = fork(path, args, { env, silent });
 
-  subProcess.on('message', message => {
+  subProcess.on('message', (message: string): void => {
     onMessage(message);
   });
 
-  subProcess.once('exit', async () => {
+  subProcess.once('exit', async (code: number): Promise<void> => {
     let stderr = '',
         stdout = '';
 
@@ -50,20 +49,20 @@ const runfork = function ({
       stderr = await toString(subProcess.stderr);
     }
 
-    onExit(subProcess.exitCode, stdout, stderr);
+    onExit(code, stdout, stderr);
   });
 
-  const stop = async function () {
+  const stop = async function (): Promise<void> {
     process.removeListener('SIGINT', cleanUpAndExit);
     process.removeListener('SIGTERM', cleanUpAndExit);
     process.removeListener('exit', cleanUpAndExit);
 
     try {
-      await retry(async () => {
+      await retry(async (): Promise<void> => {
         try {
           process.kill(subProcess.pid, 'SIGINT');
         } catch (ex) {
-          // process.kill throws an exception if the PID could not be found.
+          // `process.kill` throws an exception if the PID could not be found.
           // So, this means that the process has gone, so we are fine.
           return;
         }
@@ -86,4 +85,4 @@ const runfork = function ({
   return stop;
 };
 
-module.exports = runfork;
+export default runfork;

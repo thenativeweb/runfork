@@ -1,9 +1,12 @@
 'use strict';
 
+// This file is in JavaScript so that it can be run directly by runfork in the
+// tests.
+
 const http = require('http');
 
-const flaschenpost = require('flaschenpost'),
-      processenv = require('processenv');
+const flaschenpost = require('flaschenpost').default,
+      processenv = require('processenv').default;
 
 const logger = flaschenpost.getLogger();
 
@@ -19,9 +22,9 @@ const exit = function () {
 
   logger.info('Exiting sample application...');
 
-  /* eslint-disable no-process-exit */
+  /* eslint-disable unicorn/no-process-exit */
   process.exit(exitCode);
-  /* eslint-enable no-process-exit */
+  /* eslint-enable unicorn/no-process-exit */
 };
 
 process.on('SIGINT', () => {

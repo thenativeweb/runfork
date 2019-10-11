@@ -2,6 +2,16 @@
 
 runfork runs a Node.js script isolated as a process.
 
+## Status
+
+| Category         | Status                                                                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Version          | [![npm](https://img.shields.io/npm/v/runfork)](https://www.npmjs.com/package/runfork)                                                      |
+| Dependencies     | ![David](https://img.shields.io/david/thenativeweb/runfork)                                                                                |
+| Dev dependencies | ![David](https://img.shields.io/david/dev/thenativeweb/runfork)                                                                            |
+| Build            | [![CircleCI](https://img.shields.io/circleci/build/github/thenativeweb/runfork)](https://circleci.com/gh/thenativeweb/runfork/tree/master) |
+| License          | ![GitHub](https://img.shields.io/github/license/thenativeweb/runfork)                                                                      |
+
 ## Installation
 
 ```shell
@@ -13,7 +23,13 @@ $ npm install runfork
 To use runfork first you need to add a reference to your application:
 
 ```javascript
-const runfork = require('runfork');
+const runfork = require('runfork').default;
+```
+
+If you use TypeScript, use the following code instead:
+
+```typescript
+import runFork from 'runfork';
 ```
 
 Then to run a Node.js script, run `runfork` and provide the path to the script using an `options` object. In case the script can not be started, an exception is thrown:
@@ -106,14 +122,3 @@ To build this module use [roboter](https://www.npmjs.com/package/roboter).
 ```shell
 $ npx roboter
 ```
-
-## License
-
-The MIT License (MIT)
-Copyright (c) 2016-2019 the native web.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
