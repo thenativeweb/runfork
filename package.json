@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/async-retry": "1.4.1",
-    "@types/node": "12.11.4",
+    "@types/node": "12.11.5",
     "@types/superagent": "4.1.3",
     "assertthat": "4.0.2",
     "flaschenpost": "3.1.0",
