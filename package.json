@@ -34,7 +34,7 @@
     "@types/async-retry": "1.4.1",
     "@types/node": "12.12.7",
     "@types/superagent": "4.1.4",
-    "assertthat": "4.0.2",
+    "assertthat": "5.0.2",
     "flaschenpost": "3.2.0",
     "knockat": "2.0.0",
     "measure-time": "4.0.0",
