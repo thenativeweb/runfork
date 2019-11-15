@@ -85,4 +85,4 @@ const runfork = function ({
   return stop;
 };
 
-export default runfork;
+export { runfork };

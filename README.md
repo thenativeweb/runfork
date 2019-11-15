@@ -23,13 +23,13 @@ $ npm install runfork
 To use runfork first you need to add a reference to your application:
 
 ```javascript
-const runfork = require('runfork').default;
+const { runfork } = require('runfork');
 ```
 
 If you use TypeScript, use the following code instead:
 
 ```typescript
-import runFork from 'runfork';
+import { runfork } from 'runfork';
 ```
 
 Then to run a Node.js script, run `runfork` and provide the path to the script using an `options` object. In case the script can not be started, an exception is thrown:

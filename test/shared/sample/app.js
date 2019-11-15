@@ -5,7 +5,7 @@
 
 const http = require('http');
 
-const flaschenpost = require('flaschenpost').default,
+const { flaschenpost } = require('flaschenpost'),
       { processenv } = require('processenv');
 
 const logger = flaschenpost.getLogger();

@@ -1,9 +1,9 @@
-import assert from 'assertthat';
-import knock from 'knockat';
-import measureTime from 'measure-time';
+import { assert } from 'assertthat';
+import { knock } from 'knockat';
+import { measureTime } from 'measure-time';
 import path from 'path';
 import request from 'superagent';
-import runfork from '../../lib/runfork';
+import { runfork } from '../../lib/runfork';
 
 const sampleApp = path.join(__dirname, '..', 'shared', 'sample', 'app.js');
 
