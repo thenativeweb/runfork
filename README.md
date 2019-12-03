@@ -4,13 +4,13 @@ runfork runs a Node.js script isolated as a process.
 
 ## Status
 
-| Category         | Status                                                                                                                                     |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Version          | [![npm](https://img.shields.io/npm/v/runfork)](https://www.npmjs.com/package/runfork)                                                      |
-| Dependencies     | ![David](https://img.shields.io/david/thenativeweb/runfork)                                                                                |
-| Dev dependencies | ![David](https://img.shields.io/david/dev/thenativeweb/runfork)                                                                            |
-| Build            | [![CircleCI](https://img.shields.io/circleci/build/github/thenativeweb/runfork)](https://circleci.com/gh/thenativeweb/runfork/tree/master) |
-| License          | ![GitHub](https://img.shields.io/github/license/thenativeweb/runfork)                                                                      |
+| Category         | Status                                                                                               |
+| ---------------- | ---------------------------------------------------------------------------------------------------- |
+| Version          | [![npm](https://img.shields.io/npm/v/runfork)](https://www.npmjs.com/package/runfork)                |
+| Dependencies     | ![David](https://img.shields.io/david/thenativeweb/runfork)                                          |
+| Dev dependencies | ![David](https://img.shields.io/david/dev/thenativeweb/runfork)                                      |
+| Build            | ![GitHub Actions](https://github.com/thenativeweb/runfork/workflows/Release/badge.svg?branch=master) |
+| License          | ![GitHub](https://img.shields.io/github/license/thenativeweb/runfork)                                |
 
 ## Installation
 
