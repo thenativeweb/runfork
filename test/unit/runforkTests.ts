@@ -7,7 +7,9 @@ import { runfork } from '../../lib/runfork';
 
 const sampleApp = path.join(__dirname, '..', 'shared', 'sample', 'app.js');
 
-suite('runfork', (): void => {
+suite('runfork', function (): void {
+  this.timeout(5 * 1000);
+
   teardown(async (): Promise<void> => {
     // Delay each test so that the operating system has enough time to clear
     // any ports being used.
@@ -195,9 +197,7 @@ suite('runfork', (): void => {
     });
   });
 
-  suite('stop', function (): void {
-    this.timeout(4000);
-
+  suite('stop', (): void => {
     test('stops the script.', async (): Promise<void> => {
       const stop = runfork({
         path: sampleApp,
