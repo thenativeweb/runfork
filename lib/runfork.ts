@@ -1,5 +1,5 @@
 import process from 'process';
-import retry from 'async-retry';
+import { retry } from 'retry-ignore-abort';
 import toString from 'stream-to-string';
 import { ChildProcess, fork } from 'child_process';
 
