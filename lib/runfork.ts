@@ -19,7 +19,7 @@ const runfork = function ({
   args?: string[];
   env?: NodeJS.ProcessEnv;
   onMessage? (message: string): void;
-  onExit? (exitCode: number, stdoud: string, stderr: string): void;
+  onExit? (exitCode: number, stdout: string, stderr: string): void;
   silent?: boolean;
 }): () => Promise<void> {
   let subProcess: ChildProcess;
