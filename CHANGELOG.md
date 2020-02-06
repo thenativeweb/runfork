@@ -1,3 +1,10 @@
+## [3.0.5](https://github.com/thenativeweb/runfork/compare/3.0.4...3.0.5) (2020-02-06)
+
+
+### Bug Fixes
+
+* Fix typo in `onExit` signature. ([#148](https://github.com/thenativeweb/runfork/issues/148)) ([41fd2cf](https://github.com/thenativeweb/runfork/commit/41fd2cf94643a6d1bb79414805507c8d6ad65b36))
+
 ## [3.0.4](https://github.com/thenativeweb/runfork/compare/3.0.3...3.0.4) (2020-02-04)
 
 
