@@ -31,7 +31,7 @@
     "stream-to-string": "1.2.0"
   },
   "devDependencies": {
-    "@types/node": "13.7.0",
+    "@types/node": "13.7.1",
     "@types/superagent": "4.1.6",
     "assertthat": "5.1.0",
     "flaschenpost": "4.0.2",
