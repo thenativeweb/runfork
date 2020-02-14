@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/node": "13.7.1",
-    "@types/superagent": "4.1.6",
+    "@types/superagent": "4.1.7",
     "assertthat": "5.1.0",
     "flaschenpost": "4.0.2",
     "knockat": "4.0.4",
