@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/thenativeweb/runfork/compare/3.0.5...3.1.0) (2020-02-18)
+
+
+### Features
+
+* Add Node.js args. ([#161](https://github.com/thenativeweb/runfork/issues/161)) ([5ea2159](https://github.com/thenativeweb/runfork/commit/5ea2159a32f25c4e48c5c44ee992da5bad09aea3))
+
 ## [3.0.5](https://github.com/thenativeweb/runfork/compare/3.0.4...3.0.5) (2020-02-06)
 
 
