@@ -127,7 +127,7 @@ suite('runfork', function (): void {
             env: {
               TIMEOUT: String(1.5 * 1000)
             },
-            onExit (exitCode: number, stdout: string, stderr: string): void {
+            onExit (_exitCode: number, stdout: string, stderr: string): void {
               try {
                 assert.that(stdout).is.matching(/Sample application started/mu);
                 assert.that(stderr).is.equalTo('');
@@ -181,7 +181,7 @@ suite('runfork', function (): void {
           runfork({
             path: sampleApp,
             args: [ '--type', 'test' ],
-            onExit (exitCode: number, stdout: string): void {
+            onExit (_exitCode: number, stdout: string): void {
               try {
                 assert.that(stdout).is.matching(/"Process arguments[^"]*,--type,test"/u);
                 resolve();

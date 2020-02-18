@@ -45,7 +45,7 @@ You can also pass arguments to the fork:
 ```javascript
 const stop = runfork({
   path: './app.js',
-  args: ['--type', 'test'],
+  args: [ '--type', 'test' ],
 });
 ```
 
@@ -59,6 +59,17 @@ const stop = runfork({
   env: {
     PORT: 3000
   }
+});
+```
+
+### Passing Node.js arguments to the fork
+
+You can also pass arguments to the Node.js call of the fork:
+
+```javascript
+const stop = runfork({
+  path: './app.js',
+  nodeArgs: [ '--inspect' ],
 });
 ```
 

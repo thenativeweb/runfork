@@ -5,6 +5,7 @@ import { ChildProcess, fork } from 'child_process';
 
 const runfork = function ({
   path,
+  nodeArgs = [],
   args = [],
   env = {},
   onMessage = (): void => {
@@ -16,6 +17,7 @@ const runfork = function ({
   silent = true
 }: {
   path: string;
+  nodeArgs?: string[];
   args?: string[];
   env?: NodeJS.ProcessEnv;
   onMessage? (message: string): void;
@@ -32,7 +34,7 @@ const runfork = function ({
   process.on('SIGTERM', cleanUpAndExit);
   process.on('exit', cleanUpAndExit);
 
-  subProcess = fork(path, args, { env, silent });
+  subProcess = fork(path, args, { env, silent, execArgv: nodeArgs });
 
   subProcess.on('message', (message: string): void => {
     onMessage(message);
