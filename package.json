@@ -34,7 +34,7 @@
     "@types/node": "13.7.4",
     "@types/superagent": "4.1.7",
     "assertthat": "5.1.0",
-    "flaschenpost": "4.0.2",
+    "flaschenpost": "4.0.3",
     "knockat": "4.0.4",
     "measure-time": "5.0.0",
     "processenv": "3.0.1",
