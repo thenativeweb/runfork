@@ -37,7 +37,7 @@
     "flaschenpost": "4.0.9",
     "knockat": "4.0.4",
     "measure-time": "5.0.0",
-    "processenv": "3.0.1",
+    "processenv": "3.0.2",
     "roboter": "11.1.19",
     "semantic-release-configuration": "1.0.19",
     "superagent": "5.2.2"
