@@ -1,3 +1,10 @@
+## [3.1.3](https://github.com/thenativeweb/runfork/compare/3.1.2...3.1.3) (2020-07-08)
+
+
+### Bug Fixes
+
+* bump @types/node from 14.0.19 to 14.0.20 ([#258](https://github.com/thenativeweb/runfork/issues/258)) ([e43cade](https://github.com/thenativeweb/runfork/commit/e43cade0e41cd072064fa5eebf0469d2e469e88a))
+
 ## [3.1.2](https://github.com/thenativeweb/runfork/compare/3.1.1...3.1.2) (2020-07-08)
 
 
