@@ -34,7 +34,7 @@
   "devDependencies": {
     "@types/superagent": "4.1.10",
     "assertthat": "5.2.1",
-    "flaschenpost": "4.3.1",
+    "flaschenpost": "4.3.3",
     "knockat": "4.0.20",
     "measure-time": "5.0.0",
     "processenv": "3.0.2",
