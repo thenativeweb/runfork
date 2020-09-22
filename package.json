@@ -38,7 +38,7 @@
     "knockat": "4.0.24",
     "measure-time": "5.0.0",
     "processenv": "3.0.2",
-    "roboter": "11.2.26",
+    "roboter": "11.3.7",
     "semantic-release-configuration": "1.0.21",
     "superagent": "6.1.0"
   },
