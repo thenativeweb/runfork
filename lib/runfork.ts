@@ -20,8 +20,8 @@ const runfork = function ({
   nodeArgs?: string[];
   args?: string[];
   env?: NodeJS.ProcessEnv;
-  onMessage? (message: string): void;
-  onExit? (exitCode: number, stdout: string, stderr: string): void;
+  onMessage?: (message: string) => void;
+  onExit?: (exitCode: number, stdout: string, stderr: string) => void;
   silent?: boolean;
 }): () => Promise<void> {
   let subProcess: ChildProcess;
@@ -63,7 +63,7 @@ const runfork = function ({
       await retry(async (): Promise<void> => {
         try {
           process.kill(subProcess.pid, 'SIGINT');
-        } catch (ex) {
+        } catch {
           // `process.kill` throws an exception if the PID could not be found.
           // So, this means that the process has gone, so we are fine.
           return;
@@ -77,7 +77,7 @@ const runfork = function ({
         maxTimeout: 10,
         factor: 1
       });
-    } catch (ex) {
+    } catch {
       // If the process could not be stopped gracefully, force it to shut down
       // immediately.
       subProcess.kill('SIGKILL');

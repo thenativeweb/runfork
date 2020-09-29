@@ -31,13 +31,14 @@ suite('runfork', function (): void {
           runfork({
             path: sampleApp,
             env: {
+              // eslint-disable-next-line @typescript-eslint/naming-convention
               TIMEOUT: String(1.5 * 1000)
             },
             onMessage (message: string): void {
               try {
                 wasOnMessageCalled = true;
                 assert.that(message).is.equalTo({ ping: 'pong' });
-              } catch (ex) {
+              } catch (ex: unknown) {
                 reject(ex);
               }
             },
@@ -45,12 +46,12 @@ suite('runfork', function (): void {
               try {
                 assert.that(wasOnMessageCalled).is.true();
                 resolve();
-              } catch (ex) {
+              } catch (ex: unknown) {
                 reject(ex);
               }
             }
           });
-        } catch (ex) {
+        } catch (ex: unknown) {
           reject(ex);
         }
       });
@@ -67,7 +68,7 @@ suite('runfork', function (): void {
               resolve();
             }
           });
-        } catch (ex) {
+        } catch (ex: unknown) {
           reject(ex);
         }
       });
@@ -79,18 +80,19 @@ suite('runfork', function (): void {
           runfork({
             path: sampleApp,
             env: {
+              // eslint-disable-next-line @typescript-eslint/naming-convention
               EXIT_CODE: 'foobar'
             },
             onExit (exitCode: number): void {
               try {
                 assert.that(exitCode).is.equalTo(1);
                 resolve();
-              } catch (ex) {
+              } catch (ex: unknown) {
                 reject(ex);
               }
             }
           });
-        } catch (ex) {
+        } catch (ex: unknown) {
           reject(ex);
         }
       });
@@ -102,18 +104,19 @@ suite('runfork', function (): void {
           runfork({
             path: sampleApp,
             env: {
+              // eslint-disable-next-line @typescript-eslint/naming-convention
               EXIT_CODE: String(1)
             },
             onExit (exitCode: number): void {
               try {
                 assert.that(exitCode).is.equalTo(1);
                 resolve();
-              } catch (ex) {
+              } catch (ex: unknown) {
                 reject(ex);
               }
             }
           });
-        } catch (ex) {
+        } catch (ex: unknown) {
           reject(ex);
         }
       });
@@ -125,19 +128,20 @@ suite('runfork', function (): void {
           runfork({
             path: sampleApp,
             env: {
+              // eslint-disable-next-line @typescript-eslint/naming-convention
               TIMEOUT: String(1.5 * 1000)
             },
-            onExit (_exitCode: number, stdout: string, stderr: string): void {
+            onExit (exitCode: number, stdout: string, stderr: string): void {
               try {
                 assert.that(stdout).is.matching(/Sample application started/mu);
                 assert.that(stderr).is.equalTo('');
                 resolve();
-              } catch (ex) {
+              } catch (ex: unknown) {
                 reject(ex);
               }
             }
           });
-        } catch (ex) {
+        } catch (ex: unknown) {
           reject(ex);
         }
       });
@@ -153,6 +157,7 @@ suite('runfork', function (): void {
           runfork({
             path: sampleApp,
             env: {
+              // eslint-disable-next-line @typescript-eslint/naming-convention
               TIMEOUT: String(1 * 1000)
             },
             onExit (): void {
@@ -162,12 +167,12 @@ suite('runfork', function (): void {
                 assert.that(elapsed.seconds).is.equalTo(1);
 
                 resolve();
-              } catch (ex) {
+              } catch (ex: unknown) {
                 reject(ex);
               }
             }
           });
-        } catch (ex) {
+        } catch (ex: unknown) {
           reject(ex);
         }
       });
@@ -181,16 +186,16 @@ suite('runfork', function (): void {
           runfork({
             path: sampleApp,
             args: [ '--type', 'test' ],
-            onExit (_exitCode: number, stdout: string): void {
+            onExit (exitCode: number, stdout: string): void {
               try {
                 assert.that(stdout).is.matching(/"Process arguments[^"]*,--type,test"/u);
                 resolve();
-              } catch (ex) {
+              } catch (ex: unknown) {
                 reject(ex);
               }
             }
           });
-        } catch (ex) {
+        } catch (ex: unknown) {
           reject(ex);
         }
       });
@@ -202,6 +207,7 @@ suite('runfork', function (): void {
       const stop = runfork({
         path: sampleApp,
         env: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           TIMEOUT: String(10 * 1000)
         }
       });
@@ -232,7 +238,10 @@ suite('runfork', function (): void {
       const stop = runfork({
         path: sampleApp,
         env: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           TIMEOUT: String(10 * 1000),
+
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           SHUTDOWN_TIMEOUT: String(500)
         }
       });
