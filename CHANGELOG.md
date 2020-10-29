@@ -1,3 +1,10 @@
+## [3.1.27](https://github.com/thenativeweb/runfork/compare/3.1.26...3.1.27) (2020-10-29)
+
+
+### Bug Fixes
+
+* bump @types/node from 14.14.5 to 14.14.6 ([#387](https://github.com/thenativeweb/runfork/issues/387)) ([eb6d294](https://github.com/thenativeweb/runfork/commit/eb6d294a715afb0d7999b0f10ae26365b3d2c064))
+
 ## [3.1.26](https://github.com/thenativeweb/runfork/compare/3.1.25...3.1.26) (2020-10-28)
 
 
