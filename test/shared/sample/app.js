@@ -11,7 +11,7 @@ const { flaschenpost } = require('flaschenpost'),
 const logger = flaschenpost.getLogger();
 
 const exitCode = processenv('EXIT_CODE') || 0,
-      port = processenv('PORT') || 3000,
+      port = processenv('PORT') || 3_000,
       sigintTimeout = processenv('SIGINT_TIMEOUT') || 0,
       timeout = processenv('TIMEOUT') || 0;
 
@@ -33,7 +33,7 @@ process.on('SIGINT', () => {
 
 setInterval(() => {
   process.send({ ping: 'pong' });
-}, 1 * 1000);
+}, 1_000);
 
 http.createServer((req, res) => {
   res.write('ok');

@@ -8,13 +8,13 @@ import { runfork } from '../../lib/runfork';
 const sampleApp = path.join(__dirname, '..', 'shared', 'sample', 'app.js');
 
 suite('runfork', function (): void {
-  this.timeout(5 * 1000);
+  this.timeout(5_000);
 
   teardown(async (): Promise<void> => {
     // Delay each test so that the operating system has enough time to clear
     // any ports being used.
     await new Promise((resolve): void => {
-      setTimeout(resolve, 0.5 * 1000);
+      setTimeout(resolve, 500);
     });
   });
 
@@ -32,7 +32,7 @@ suite('runfork', function (): void {
             path: sampleApp,
             env: {
               // eslint-disable-next-line @typescript-eslint/naming-convention
-              TIMEOUT: String(1.5 * 1000)
+              TIMEOUT: String(1_500)
             },
             onMessage (message: string): void {
               try {
@@ -129,7 +129,7 @@ suite('runfork', function (): void {
             path: sampleApp,
             env: {
               // eslint-disable-next-line @typescript-eslint/naming-convention
-              TIMEOUT: String(1.5 * 1000)
+              TIMEOUT: String(1_500)
             },
             onExit (exitCode: number, stdout: string, stderr: string): void {
               try {
@@ -158,7 +158,7 @@ suite('runfork', function (): void {
             path: sampleApp,
             env: {
               // eslint-disable-next-line @typescript-eslint/naming-convention
-              TIMEOUT: String(1 * 1000)
+              TIMEOUT: String(1_000)
             },
             onExit (): void {
               try {
@@ -208,12 +208,12 @@ suite('runfork', function (): void {
         path: sampleApp,
         env: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
-          TIMEOUT: String(10 * 1000)
+          TIMEOUT: String(10_000)
         }
       });
 
       // Wait until the http server is up and running.
-      await knock.at('localhost', 3000);
+      await knock.at('localhost', 3_000);
 
       await new Promise((resolve): void => {
         request.
@@ -239,7 +239,7 @@ suite('runfork', function (): void {
         path: sampleApp,
         env: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
-          TIMEOUT: String(10 * 1000),
+          TIMEOUT: String(10_000),
 
           // eslint-disable-next-line @typescript-eslint/naming-convention
           SHUTDOWN_TIMEOUT: String(500)
@@ -247,7 +247,7 @@ suite('runfork', function (): void {
       });
 
       // Wait until the http server is up and running.
-      await knock.at('localhost', 3000);
+      await knock.at('localhost', 3_000);
 
       await new Promise((resolve): void => {
         request.
