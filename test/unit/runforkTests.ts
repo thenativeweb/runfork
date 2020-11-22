@@ -13,7 +13,7 @@ suite('runfork', function (): void {
   teardown(async (): Promise<void> => {
     // Delay each test so that the operating system has enough time to clear
     // any ports being used.
-    await new Promise((resolve): void => {
+    await new Promise<void>((resolve): void => {
       setTimeout(resolve, 500);
     });
   });
@@ -26,7 +26,7 @@ suite('runfork', function (): void {
     test('gets called when the script sends a message.', async (): Promise<void> => {
       let wasOnMessageCalled = false;
 
-      await new Promise((resolve, reject): void => {
+      await new Promise<void>((resolve, reject): void => {
         try {
           runfork({
             path: sampleApp,
@@ -60,7 +60,7 @@ suite('runfork', function (): void {
 
   suite('onExit', (): void => {
     test('gets called once the script ends.', async (): Promise<void> => {
-      await new Promise((resolve, reject): void => {
+      await new Promise<void>((resolve, reject): void => {
         try {
           runfork({
             path: sampleApp,
@@ -75,7 +75,7 @@ suite('runfork', function (): void {
     });
 
     test('gets called even when the scripts fails ungracefully.', async (): Promise<void> => {
-      await new Promise((resolve, reject): void => {
+      await new Promise<void>((resolve, reject): void => {
         try {
           runfork({
             path: sampleApp,
@@ -99,7 +99,7 @@ suite('runfork', function (): void {
     });
 
     test('passes the exit code to onExit.', async (): Promise<void> => {
-      await new Promise((resolve, reject): void => {
+      await new Promise<void>((resolve, reject): void => {
         try {
           runfork({
             path: sampleApp,
@@ -123,7 +123,7 @@ suite('runfork', function (): void {
     });
 
     test('passes the stdout and stderr streams.', async (): Promise<void> => {
-      await new Promise((resolve, reject): void => {
+      await new Promise<void>((resolve, reject): void => {
         try {
           runfork({
             path: sampleApp,
@@ -152,7 +152,7 @@ suite('runfork', function (): void {
     test('passes environment variables to the script.', async (): Promise<void> => {
       const getElapsed = measureTime();
 
-      await new Promise((resolve, reject): void => {
+      await new Promise<void>((resolve, reject): void => {
         try {
           runfork({
             path: sampleApp,
@@ -181,7 +181,7 @@ suite('runfork', function (): void {
 
   suite('arguments', (): void => {
     test('passes arguments to the script.', async (): Promise<void> => {
-      await new Promise((resolve, reject): void => {
+      await new Promise<void>((resolve, reject): void => {
         try {
           runfork({
             path: sampleApp,
@@ -215,7 +215,7 @@ suite('runfork', function (): void {
       // Wait until the http server is up and running.
       await knock.at('localhost', 3_000);
 
-      await new Promise((resolve): void => {
+      await new Promise<void>((resolve): void => {
         request.
           get('http://localhost:3000/').
           end(async (errRequest, res): Promise<void> => {
@@ -249,7 +249,7 @@ suite('runfork', function (): void {
       // Wait until the http server is up and running.
       await knock.at('localhost', 3_000);
 
-      await new Promise((resolve): void => {
+      await new Promise<void>((resolve): void => {
         request.
           get('http://localhost:3000/').
           end(async (errRequest, res): Promise<void> => {
