@@ -1,3 +1,10 @@
+## [3.1.35](https://github.com/thenativeweb/runfork/compare/3.1.34...3.1.35) (2020-11-26)
+
+
+### Bug Fixes
+
+* bump retry-ignore-abort from 2.2.8 to 2.2.9 ([#442](https://github.com/thenativeweb/runfork/issues/442)) ([2825645](https://github.com/thenativeweb/runfork/commit/28256450367ad12cee6f7ac726f918c7eaf02b4f))
+
 ## [3.1.34](https://github.com/thenativeweb/runfork/compare/3.1.33...3.1.34) (2020-11-25)
 
 
