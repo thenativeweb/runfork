@@ -5,6 +5,13 @@
 
 * bump @types/node from 14.14.32 to 14.14.33 ([#560](https://github.com/thenativeweb/runfork/issues/560)) ([58f5a68](https://github.com/thenativeweb/runfork/commit/58f5a687c339e029a757a31c01dc596f54dd4554))
 
+## [3.1.55](https://github.com/thenativeweb/runfork/compare/3.1.54...3.1.55) (2021-03-10)
+
+
+### Bug Fixes
+
+* bump @types/node from 14.14.32 to 14.14.33 ([#560](https://github.com/thenativeweb/runfork/issues/560)) ([58f5a68](https://github.com/thenativeweb/runfork/commit/58f5a687c339e029a757a31c01dc596f54dd4554))
+
 ## [3.1.54](https://github.com/thenativeweb/runfork/compare/3.1.53...3.1.54) (2021-03-09)
 
 
