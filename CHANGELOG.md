@@ -1,3 +1,10 @@
+## [3.1.57](https://github.com/thenativeweb/runfork/compare/3.1.56...3.1.57) (2021-03-25)
+
+
+### Bug Fixes
+
+* Replace master with main. ([#574](https://github.com/thenativeweb/runfork/issues/574)) ([bc0dbd1](https://github.com/thenativeweb/runfork/commit/bc0dbd1ecb6641dd132d72493fe75b3320c5e032))
+
 ## [3.1.56](https://github.com/thenativeweb/runfork/compare/3.1.55...3.1.56) (2021-03-19)
 
 
