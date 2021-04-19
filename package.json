@@ -1,6 +1,6 @@
 {
   "name": "runfork",
-  "version": "3.1.62",
+  "version": "3.1.63",
   "description": "runfork runs a Node.js script isolated as a process.",
   "contributors": [
     {
@@ -27,14 +27,14 @@
   "main": "build/lib/runfork.js",
   "types": "build/lib/runfork.d.ts",
   "dependencies": {
-    "@types/node": "14.14.37",
+    "@types/node": "14.14.39",
     "retry-ignore-abort": "2.2.15",
     "stream-to-string": "1.2.0"
   },
   "devDependencies": {
     "@types/superagent": "4.1.10",
     "assertthat": "5.2.8",
-    "flaschenpost": "5.0.17",
+    "flaschenpost": "5.0.19",
     "knockat": "4.0.66",
     "measure-time": "5.0.2",
     "processenv": "3.0.4",
