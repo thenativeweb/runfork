@@ -1,3 +1,10 @@
+## [3.1.66](https://github.com/thenativeweb/runfork/compare/3.1.65...3.1.66) (2021-05-06)
+
+
+### Bug Fixes
+
+* bump @types/node from 15.0.0 to 15.0.2 ([#624](https://github.com/thenativeweb/runfork/issues/624)) ([e828ac1](https://github.com/thenativeweb/runfork/commit/e828ac1ddf34f19182c37399dd1273b472353f8e))
+
 ## [3.1.65](https://github.com/thenativeweb/runfork/compare/3.1.64...3.1.65) (2021-04-28)
 
 
