@@ -20,7 +20,7 @@ const runfork = function ({
   nodeArgs?: string[];
   args?: string[];
   env?: NodeJS.ProcessEnv;
-  onMessage?: (message: string) => void;
+  onMessage?: (message: string | object) => void;
   onExit?: (exitCode: number, stdout: string, stderr: string) => void;
   silent?: boolean;
 }): () => Promise<void> {
@@ -36,7 +36,7 @@ const runfork = function ({
 
   subProcess = fork(path, args, { env, silent, execArgv: nodeArgs });
 
-  subProcess.on('message', (message: string): void => {
+  subProcess.on('message', (message: string | object): void => {
     onMessage(message);
   });
 

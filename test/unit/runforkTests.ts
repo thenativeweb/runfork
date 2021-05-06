@@ -34,7 +34,7 @@ suite('runfork', function (): void {
               // eslint-disable-next-line @typescript-eslint/naming-convention
               TIMEOUT: String(1_500)
             },
-            onMessage (message: string): void {
+            onMessage (message: string | object): void {
               try {
                 wasOnMessageCalled = true;
                 assert.that(message).is.equalTo({ ping: 'pong' });
