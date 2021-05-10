@@ -1,3 +1,10 @@
+## [3.1.67](https://github.com/thenativeweb/runfork/compare/3.1.66...3.1.67) (2021-05-10)
+
+
+### Bug Fixes
+
+* bump hosted-git-info from 2.8.8 to 2.8.9 ([#629](https://github.com/thenativeweb/runfork/issues/629)) ([578b6d1](https://github.com/thenativeweb/runfork/commit/578b6d1d10a5985780ac55afea44e1b5a9209d72))
+
 ## [3.1.66](https://github.com/thenativeweb/runfork/compare/3.1.65...3.1.66) (2021-05-06)
 
 
