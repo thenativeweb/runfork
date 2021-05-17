@@ -36,7 +36,7 @@
     "assertthat": "6.0.0",
     "flaschenpost": "5.0.30",
     "knockat": "4.0.70",
-    "measure-time": "5.0.2",
+    "measure-time": "5.0.3",
     "processenv": "3.0.4",
     "roboter": "11.6.40",
     "semantic-release-configuration": "2.0.0",
