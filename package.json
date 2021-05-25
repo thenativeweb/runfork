@@ -28,7 +28,7 @@
   "types": "build/lib/runfork.d.ts",
   "dependencies": {
     "@types/node": "15.6.0",
-    "retry-ignore-abort": "2.2.16",
+    "retry-ignore-abort": "2.2.18",
     "stream-to-string": "1.2.0"
   },
   "devDependencies": {
