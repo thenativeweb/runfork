@@ -33,12 +33,12 @@
   },
   "devDependencies": {
     "@types/superagent": "4.1.11",
-    "assertthat": "6.2.0",
+    "assertthat": "6.3.0",
     "flaschenpost": "5.0.34",
     "knockat": "4.0.73",
     "measure-time": "5.0.3",
     "processenv": "3.0.5",
-    "roboter": "11.6.48",
+    "roboter": "11.7.1",
     "semantic-release-configuration": "2.0.1",
     "superagent": "6.1.0"
   },
