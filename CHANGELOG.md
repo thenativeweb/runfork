@@ -1,3 +1,10 @@
+## [3.1.74](https://github.com/thenativeweb/runfork/compare/3.1.73...3.1.74) (2021-06-08)
+
+
+### Bug Fixes
+
+* bump trim-newlines from 3.0.0 to 3.0.1 ([#660](https://github.com/thenativeweb/runfork/issues/660)) ([2d44a7f](https://github.com/thenativeweb/runfork/commit/2d44a7fd664c81d2d113751488445e65f87406d3))
+
 ## [3.1.73](https://github.com/thenativeweb/runfork/compare/3.1.72...3.1.73) (2021-06-07)
 
 

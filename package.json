@@ -1,6 +1,6 @@
 {
   "name": "runfork",
-  "version": "3.1.73",
+  "version": "3.1.74",
   "description": "runfork runs a Node.js script isolated as a process.",
   "contributors": [
     {
