@@ -1,3 +1,10 @@
+## [3.1.75](https://github.com/thenativeweb/runfork/compare/3.1.74...3.1.75) (2021-06-08)
+
+
+### Bug Fixes
+
+* bump glob-parent from 5.1.1 to 5.1.2 ([#659](https://github.com/thenativeweb/runfork/issues/659)) ([f9884bb](https://github.com/thenativeweb/runfork/commit/f9884bbcfbdba3f34dc4b2447a63e40c10a970cc))
+
 ## [3.1.74](https://github.com/thenativeweb/runfork/compare/3.1.73...3.1.74) (2021-06-08)
 
 
