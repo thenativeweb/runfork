@@ -1,3 +1,31 @@
+## [3.1.76](https://github.com/thenativeweb/runfork/compare/3.1.75...3.1.76) (2021-06-10)
+
+
+### Bug Fixes
+
+* bump normalize-url from 6.0.0 to 6.0.1 ([#661](https://github.com/thenativeweb/runfork/issues/661)) ([dd2df97](https://github.com/thenativeweb/runfork/commit/dd2df97e644721d0e008a1cd3ca203466e72b04c))
+
+## [3.1.75](https://github.com/thenativeweb/runfork/compare/3.1.74...3.1.75) (2021-06-08)
+
+
+### Bug Fixes
+
+* bump glob-parent from 5.1.1 to 5.1.2 ([#659](https://github.com/thenativeweb/runfork/issues/659)) ([f9884bb](https://github.com/thenativeweb/runfork/commit/f9884bbcfbdba3f34dc4b2447a63e40c10a970cc))
+
+## [3.1.74](https://github.com/thenativeweb/runfork/compare/3.1.73...3.1.74) (2021-06-08)
+
+
+### Bug Fixes
+
+* bump trim-newlines from 3.0.0 to 3.0.1 ([#660](https://github.com/thenativeweb/runfork/issues/660)) ([2d44a7f](https://github.com/thenativeweb/runfork/commit/2d44a7fd664c81d2d113751488445e65f87406d3))
+
+## [3.1.73](https://github.com/thenativeweb/runfork/compare/3.1.72...3.1.73) (2021-06-07)
+
+
+### Bug Fixes
+
+* bump retry-ignore-abort from 2.2.18 to 2.2.19 ([#658](https://github.com/thenativeweb/runfork/issues/658)) ([2568f14](https://github.com/thenativeweb/runfork/commit/2568f14f6afb23cdd17b422e4d3b427186d333c7))
+
 ## [3.1.72](https://github.com/thenativeweb/runfork/compare/3.1.71...3.1.72) (2021-05-31)
 
 
