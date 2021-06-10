@@ -1,3 +1,10 @@
+## [3.1.76](https://github.com/thenativeweb/runfork/compare/3.1.75...3.1.76) (2021-06-10)
+
+
+### Bug Fixes
+
+* bump normalize-url from 6.0.0 to 6.0.1 ([#661](https://github.com/thenativeweb/runfork/issues/661)) ([dd2df97](https://github.com/thenativeweb/runfork/commit/dd2df97e644721d0e008a1cd3ca203466e72b04c))
+
 ## [3.1.75](https://github.com/thenativeweb/runfork/compare/3.1.74...3.1.75) (2021-06-08)
 
 
