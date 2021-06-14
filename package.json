@@ -39,7 +39,7 @@
     "measure-time": "5.0.3",
     "processenv": "3.0.5",
     "roboter": "11.7.6",
-    "semantic-release-configuration": "2.0.1",
+    "semantic-release-configuration": "2.0.4",
     "superagent": "6.1.0"
   },
   "repository": {
