@@ -35,7 +35,7 @@
     "@types/superagent": "4.1.11",
     "assertthat": "6.3.5",
     "flaschenpost": "5.0.37",
-    "knockat": "4.0.82",
+    "knockat": "4.0.84",
     "measure-time": "5.0.6",
     "processenv": "3.0.8",
     "roboter": "11.7.7",
