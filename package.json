@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@types/superagent": "4.1.11",
-    "assertthat": "6.3.4",
+    "assertthat": "6.3.5",
     "flaschenpost": "5.0.37",
     "knockat": "4.0.82",
     "measure-time": "5.0.6",
