@@ -1,3 +1,10 @@
+## [3.1.79](https://github.com/thenativeweb/runfork/compare/3.1.78...3.1.79) (2021-07-06)
+
+
+### Bug Fixes
+
+* bump retry-ignore-abort from 2.2.23 to 2.2.24 ([#677](https://github.com/thenativeweb/runfork/issues/677)) ([b84e2c9](https://github.com/thenativeweb/runfork/commit/b84e2c93d08aec4964c91ef5f0a9d9a34428b0a9))
+
 ## [3.1.78](https://github.com/thenativeweb/runfork/compare/3.1.77...3.1.78) (2021-06-29)
 
 
