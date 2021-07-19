@@ -27,7 +27,7 @@
   "main": "build/lib/runfork.js",
   "types": "build/lib/runfork.d.ts",
   "dependencies": {
-    "@types/node": "15.6.1",
+    "@types/node": "16.3.3",
     "retry-ignore-abort": "2.2.24",
     "stream-to-string": "1.2.0"
   },
