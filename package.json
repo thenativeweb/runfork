@@ -1,6 +1,6 @@
 {
   "name": "runfork",
-  "version": "3.1.80",
+  "version": "3.1.81",
   "description": "runfork runs a Node.js script isolated as a process.",
   "contributors": [
     {
@@ -38,7 +38,7 @@
     "knockat": "4.0.91",
     "measure-time": "5.0.6",
     "processenv": "3.0.8",
-    "roboter": "11.7.7",
+    "roboter": "11.7.8",
     "semantic-release-configuration": "2.0.5",
     "superagent": "6.1.0"
   },
