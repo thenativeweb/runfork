@@ -62,6 +62,9 @@ const runfork = function ({
     try {
       await retry(async (): Promise<void> => {
         try {
+          if (!subProcess.pid) {
+            throw new Error('Process not found.');
+          }
           process.kill(subProcess.pid, 'SIGINT');
         } catch {
           // `process.kill` throws an exception if the PID could not be found.
