@@ -1,3 +1,10 @@
+## [3.1.85](https://github.com/thenativeweb/runfork/compare/3.1.84...3.1.85) (2021-08-16)
+
+
+### Bug Fixes
+
+* bump path-parse from 1.0.6 to 1.0.7 ([#708](https://github.com/thenativeweb/runfork/issues/708)) ([3715f12](https://github.com/thenativeweb/runfork/commit/3715f1296dc521c53993d3b80c26700509ecfba5))
+
 ## [3.1.84](https://github.com/thenativeweb/runfork/compare/3.1.83...3.1.84) (2021-08-09)
 
 
