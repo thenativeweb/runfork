@@ -1,6 +1,5 @@
-import process from 'process';
 import { retry } from 'retry-ignore-abort';
-import toString from 'stream-to-string';
+import streamToString from 'stream-to-string';
 import { ChildProcess, fork } from 'child_process';
 
 const runfork = function ({
@@ -45,10 +44,10 @@ const runfork = function ({
         stdout = '';
 
     if (subProcess.stdout && subProcess.stdout.readable) {
-      stdout = await toString(subProcess.stdout);
+      stdout = await streamToString(subProcess.stdout);
     }
     if (subProcess.stderr && subProcess.stderr.readable) {
-      stderr = await toString(subProcess.stderr);
+      stderr = await streamToString(subProcess.stderr);
     }
 
     onExit(code, stdout, stderr);
