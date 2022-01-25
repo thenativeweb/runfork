@@ -1,3 +1,10 @@
+## [3.1.87](https://github.com/thenativeweb/runfork/compare/3.1.86...3.1.87) (2022-01-25)
+
+
+### Bug Fixes
+
+* bump @types/node from 17.0.9 to 17.0.10 ([#747](https://github.com/thenativeweb/runfork/issues/747)) ([af5235f](https://github.com/thenativeweb/runfork/commit/af5235ffaffcdb63528295cd33806fc89da13fe5))
+
 ## [3.1.86](https://github.com/thenativeweb/runfork/compare/3.1.85...3.1.86) (2021-08-17)
 
 
