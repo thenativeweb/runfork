@@ -1,3 +1,10 @@
+## [3.1.88](https://github.com/thenativeweb/runfork/compare/3.1.87...3.1.88) (2022-03-25)
+
+
+### Bug Fixes
+
+* bump minimist from 1.2.5 to 1.2.6 ([#765](https://github.com/thenativeweb/runfork/issues/765)) ([e6634e0](https://github.com/thenativeweb/runfork/commit/e6634e00213a4ada2bf71795aa63304370cfa7db))
+
 ## [3.1.87](https://github.com/thenativeweb/runfork/compare/3.1.86...3.1.87) (2022-01-25)
 
 
