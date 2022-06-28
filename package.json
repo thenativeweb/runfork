@@ -41,7 +41,7 @@
     "processenv": "3.0.9",
     "roboter": "13.1.0",
     "semantic-release-configuration": "2.0.7",
-    "superagent": "7.1.6"
+    "superagent": "8.0.0"
   },
   "scripts": {},
   "repository": {
